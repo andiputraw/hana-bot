@@ -2,6 +2,7 @@ import { CommandResponse } from "@/types.ts";
 import { log } from "@/utils/mod.ts";
 
 // Code adapted from https://github.com/discord/discord-example-app/blob/main/utils.js
+// deno-lint-ignore no-explicit-any
 export async function discordRequest(endpoint: string, options: any) {
   // append endpoint to root API URL
   const url = "https://discord.com/api/v10/" + endpoint;

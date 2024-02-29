@@ -4,10 +4,10 @@ import { Embed } from "@/helpers/responses/mod.ts";
 import { dump } from "https://deno.land/x/js_yaml_port@3.14.0/js-yaml.js";
 
 export const alias: Command = {
-  async execute(
-    _request: any,
+  execute(
+    _request,
     _payload: CommonPayload,
-  ): Promise<CommandResponse> {
+  ): CommandResponse {
     let builder = "```yaml\n";
     const aliasYaml = dump(alias_);
     builder += aliasYaml;

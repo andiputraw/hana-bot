@@ -8,7 +8,6 @@ const enum NodeType {
   LABEL = "LABEL",
   H2 = "H2",
 }
-const schoolRegex = /\*\*([^*]+)\*\*/;
 
 /**
  * this function expect this node structure

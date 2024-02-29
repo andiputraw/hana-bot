@@ -56,7 +56,7 @@ export interface Command {
     // deno-lint-ignore no-explicit-any
     request: any,
     payload: CommonPayload,
-  ): Promise<CommandResponse>;
+  ): Promise<CommandResponse> | CommandResponse;
 }
 
 export interface CommonPayload {

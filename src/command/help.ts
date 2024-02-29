@@ -1,5 +1,5 @@
 import { Command, CommandResponse, CommonPayload } from "@/types.ts";
-import { Embed, Message } from "@/helpers/responses/mod.ts";
+import { Embed } from "@/helpers/responses/mod.ts";
 
 interface HelpRequest {
   id: string;
@@ -50,10 +50,10 @@ function helpAlias() {
 }
 
 export const help: Command = {
-  async execute(
+  execute(
     request: HelpRequest,
     _payload: CommonPayload,
-  ): Promise<CommandResponse> {
+  ): CommandResponse {
     const option = request.options;
     if (!option) {
       return helpHelp();
