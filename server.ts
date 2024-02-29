@@ -1,7 +1,8 @@
 /// <reference lib="deno.unstable" />
 import { json, serve, validateRequest } from "sift";
 import nacl from "nacl";
-import "std/dotenv/load.ts";
+import { load } from "std/dotenv/mod.ts";
+await load({ export: true, allowEmptyValues: true });
 import { command } from "@/src/mod.ts";
 import "@/queue/listener.ts";
 
