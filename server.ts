@@ -1,10 +1,14 @@
 /// <reference lib="deno.unstable" />
 import { json, serve, validateRequest } from "sift";
 import nacl from "nacl";
-import { InteractionType } from "discord-types/v10.ts";
-import "https://deno.land/std@0.217.0/dotenv/load.ts";
+import "std/dotenv/load.ts";
 import { command } from "@/src/mod.ts";
 import "@/queue/listener.ts";
+
+enum InteractionType {
+  Ping = 1,
+  ApplicationCommand = 2,
+}
 
 serve({
   "/": home,
@@ -47,10 +51,8 @@ async function home(request: Request) {
 
   // Type 2 in a request is an ApplicationCommand interaction.
   // It implies that a user has issued a command.
-  console.log(JSON.parse(body));
-  if (type === 2) {
+  if (type === InteractionType.ApplicationCommand) {
     const commandName = data.name as string;
-    console.log(data);
 
     const comm = command[commandName];
     if (!comm) {

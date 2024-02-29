@@ -1,4 +1,5 @@
 import { CommandResponse } from "@/types.ts";
+import { log } from "@/utils/mod.ts";
 
 // Code adapted from https://github.com/discord/discord-example-app/blob/main/utils.js
 export async function discordRequest(endpoint: string, options: any) {
@@ -6,7 +7,6 @@ export async function discordRequest(endpoint: string, options: any) {
   const url = "https://discord.com/api/v10/" + endpoint;
   // Stringify payloads
   if (options.body) options.body = JSON.stringify(options.body);
-  console.log(options.body);
   // Use node-fetch to make requests
   const res = await fetch(url, {
     headers: {
@@ -19,8 +19,8 @@ export async function discordRequest(endpoint: string, options: any) {
   // throw API errors
   if (!res.ok) {
     const data = await res.json();
-    console.log(res.status);
-    console.log(data);
+    log(res.status);
+    log(data);
     return res;
   }
   // return original response

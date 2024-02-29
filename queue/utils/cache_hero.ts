@@ -3,21 +3,22 @@ import { heroMessage } from "@/helpers/mod.ts";
 import {
   getDocument,
   getHtml,
+  LogType,
   parseHeroAbilities,
   parseHeroStats,
 } from "../../utils/mod.ts";
 import { GetDocumentMessage, isHeroCache } from "../interfaces.ts";
 import { CONSTANT } from "@/config/constant.ts";
 import { Message } from "@/helpers/responses/mod.ts";
+import { log } from "@/utils/mod.ts";
 
 export async function cacheHero(msg: GetDocumentMessage, kv: Deno.Kv) {
   if (!isHeroCache(msg.data)) {
     return;
   }
-  console.log(msg);
   const data = await getHtml(msg.link);
   if (!data) {
-    console.error("data not found");
+    log(LogType.Error, "data not found");
     sendMessage(
       new Message().setContent("Sorry, i dont have information about that.")
         .build(),
@@ -27,7 +28,7 @@ export async function cacheHero(msg: GetDocumentMessage, kv: Deno.Kv) {
   }
   const doc = getDocument(data);
   if (!doc) {
-    console.error("document corrupted");
+    log(LogType.Error, "document corrupted");
     sendMessage(
       new Message().setContent("Sorry, i dont have information about that.")
         .build(),
@@ -45,7 +46,7 @@ export async function cacheHero(msg: GetDocumentMessage, kv: Deno.Kv) {
         .build(),
       msg.channelId,
     );
-    console.error("document does not have guardian info");
+    log(LogType.Error, "document does not have guardian info");
     return;
   }
   if (!descWrap) {
@@ -54,13 +55,17 @@ export async function cacheHero(msg: GetDocumentMessage, kv: Deno.Kv) {
         .build(),
       msg.channelId,
     );
-    console.error("document does not have stats class name");
+    log(LogType.Error, "document does not have stats class name");
     return;
   }
 
   if (!thumbnailWrap) {
-    new Message().setContent("Sorry, i dont have information about that.")
-      .build(), console.error("document does not have thumbnail");
+    sendMessage(
+      new Message().setContent("Sorry, i dont have information about that.")
+        .build(),
+      msg.channelId,
+    );
+    log(LogType.Error, "document does not have thumbnail");
     return;
   }
   const thumbnail = thumbnailWrap.getElementsByTagName("img")[0].getAttribute(
@@ -76,7 +81,6 @@ export async function cacheHero(msg: GetDocumentMessage, kv: Deno.Kv) {
 
   const stats = descWrap.getElementsByTagName("div");
   const abilities = infoWrap.getElementsByClassName("info");
-  console.log(stats[0].innerHTML);
   const fieldsStats = parseHeroStats(stats);
   const fieldsAbilities = parseHeroAbilities(abilities);
   const embed = heroMessage(

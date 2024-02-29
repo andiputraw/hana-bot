@@ -4,7 +4,7 @@ import { cache } from "../../database/mod.ts";
 import { cacheDocument } from "../../queue/mod.ts";
 import { Command, CommandResponse, CommonPayload } from "../../types.ts";
 import { HeroCache } from "../../queue/mod.ts";
-import { Embed, Message } from "@/helpers/responses/mod.ts";
+import { Message } from "@/helpers/responses/mod.ts";
 import { heroMessage } from "@/helpers/mod.ts";
 import { getAlias } from "@/alias.ts";
 
@@ -54,6 +54,9 @@ export const hero: Command = {
     }
     const infos = el.getElementsByClassName("info");
     const desc = getDocument(descCache);
+    if (!desc) {
+      return new Message().setContent("document corrupted").build();
+    }
     const stats = desc.getElementsByTagName("div");
 
     const fieldStat = parseHeroStats(stats);

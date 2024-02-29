@@ -1,10 +1,11 @@
 import { DOMParser } from "parser";
+import { log, LogType } from "@/utils/mod.ts";
 
 export function getDocument(html: string) {
   const doc = new DOMParser().parseFromString(html, "text/html");
   if (!doc) {
-    console.error("cannot initiate document");
-    Deno.exit(1);
+    log(LogType.Error, "cannot initiate document");
+    return undefined;
   }
 
   return doc;
