@@ -20,9 +20,9 @@ const enum NodeType {
         When Justice Edge hits, increase Atk by 30% for 4 seconds.</div>
     </div>
  * ```
- * @returns return an array of tuple. the first element is the label and the second is the value
+ * @returns
  */
-export function parseHeroAbilities(infos: Element[]): Array<[string, string]> {
+export function parseHeroAbilities(infos: Element[]) {
   const fields: Array<[string, string]> = [];
   for (const info of infos) {
     const head = info.getElementsByClassName("heading")[0];

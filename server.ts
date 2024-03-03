@@ -1,11 +1,13 @@
 /// <reference lib="deno.unstable" />
-import { json, serve, validateRequest } from "sift";
-import nacl from "nacl";
 import { load } from "std/dotenv/mod.ts";
 await load({ export: true, allowEmptyValues: true });
+import { json, serve, validateRequest } from "sift";
+import nacl from "nacl";
 import { command } from "@/src/mod.ts";
-import "./src/queue/listener.ts";
+import "@/src/queue/listener.ts";
+import { Model } from "@/src/model/mod.ts";
 
+await Model.init();
 enum InteractionType {
   Ping = 1,
   ApplicationCommand = 2,

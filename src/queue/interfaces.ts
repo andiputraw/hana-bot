@@ -1,4 +1,4 @@
-import { CacheType } from "../database/mod.ts";
+import { CacheType } from "../model/mod.ts";
 // Define the shape of the object we expect as a message in the queue
 
 export interface HeroCache {

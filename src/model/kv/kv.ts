@@ -1,4 +1,4 @@
-import { Database } from "./interface.ts";
+import { Database } from "../interface.ts";
 
 class KV implements Database {
   #kv;

@@ -8,6 +8,9 @@
     "nacl": "https://cdn.skypack.dev/tweetnacl@v1.0.3?dts",
     "sift": "https://deno.land/x/sift@0.6.0/mod.ts",
     "std/": "https://deno.land/std@0.217.0/",
+    "drizzle": "npm:drizzle-orm@0.29.4",
+    "drizzle/": "npm:/drizzle-orm@0.29.4/",
+    "libsql": "npm:@libsql/client/web",
     "@/": "./"
   }
 }

@@ -1,6 +1,4 @@
-import { getDocument } from "../utils/document.ts";
-import { parseHeroAbilities, parseHeroStats } from "../utils/parser.ts";
-import { cache } from "../database/mod.ts";
+import { Model } from "../model/mod.ts";
 import { cacheDocument } from "../queue/mod.ts";
 import { Command, CommandResponse, CommonPayload } from "../types.ts";
 import { HeroCache } from "../queue/mod.ts";
@@ -22,20 +20,15 @@ export const hero: Command = {
     request: HeroRequest,
     payload: CommonPayload,
   ): Promise<CommandResponse> {
+    const heroModel = Model.getHero();
     const nameWithSpace = getAlias(request.options[0].value) ||
       request.options[0].value;
     const name = nameWithSpace.replaceAll(" ", "+");
-    const [infoCache, ok1] = await cache.getCache<string>("hero", name, "info");
-    const [descCache, ok2] = await cache.getCache<string>("hero", name, "desc");
-    const [thumbCache, ok3] = await cache.getCache<string>(
-      "hero",
-      name,
-      "thumbnail",
-    );
+    const [hero, ok] = await heroModel.getHero(name);
     const urlLink =
       `https://guardiantalesguides.com/game/guardians/show/${name}`;
 
-    if (!ok1 || !ok2 || !ok3) {
+    if (!ok) {
       //If cache miss
       await cacheDocument({
         channelId: payload.channel.id,
@@ -48,21 +41,16 @@ export const hero: Command = {
       return new Message().setContent("wait a second").build();
     }
     //if hit
-    const el = getDocument(infoCache);
-    if (!el) {
-      return new Message().setContent("document corrupted").build();
-    }
-    const infos = el.getElementsByClassName("info");
-    const desc = getDocument(descCache);
-    if (!desc) {
-      return new Message().setContent("document corrupted").build();
-    }
-    const stats = desc.getElementsByTagName("div");
-
-    const fieldStat = parseHeroStats(stats);
-
-    const fieldsAbilities = parseHeroAbilities(infos);
-    const embed = heroMessage(fieldStat, fieldsAbilities, thumbCache, urlLink);
+    const embed = heroMessage(
+      {
+        abilities: hero.abilities,
+        stats: hero.stats,
+        name: nameWithSpace,
+        metadata: hero.metadatas,
+      },
+      hero.img,
+      urlLink,
+    );
     return embed.build();
   },
 };
