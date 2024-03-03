@@ -1,6 +1,6 @@
 import { isGetDocumentMessage } from "./interfaces.ts";
 import { cacheHero } from "./utils/cache_hero.ts";
-import { log, LogType } from "@/utils/mod.ts";
+import { log, LogType } from "../utils/mod.ts";
 
 // Get a reference to a KV database
 const kv = await Deno.openKv();

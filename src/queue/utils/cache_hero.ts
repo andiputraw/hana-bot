@@ -1,5 +1,5 @@
 import { sendMessage } from "../../api/discord.ts";
-import { heroMessage } from "@/helpers/mod.ts";
+import { heroMessage } from "../../helpers/mod.ts";
 import {
   getDocument,
   getHtml,
@@ -8,9 +8,9 @@ import {
   parseHeroStats,
 } from "../../utils/mod.ts";
 import { GetDocumentMessage, isHeroCache } from "../interfaces.ts";
-import { CONSTANT } from "@/config/constant.ts";
-import { Message } from "@/helpers/responses/mod.ts";
-import { log } from "@/utils/mod.ts";
+import { CONSTANT } from "../../config/constant.ts";
+import { Message } from "../../helpers/responses/mod.ts";
+import { log } from "../../utils/mod.ts";
 
 export async function cacheHero(msg: GetDocumentMessage, kv: Deno.Kv) {
   if (!isHeroCache(msg.data)) {

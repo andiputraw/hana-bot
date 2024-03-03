@@ -1,5 +1,5 @@
-import { Command, CommandResponse, CommonPayload } from "@/types.ts";
-import { Embed } from "@/helpers/responses/mod.ts";
+import { Command, CommandResponse, CommonPayload } from "../types.ts";
+import { Embed } from "../helpers/responses/mod.ts";
 
 export const about: Command = {
   execute(

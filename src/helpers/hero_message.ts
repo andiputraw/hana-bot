@@ -1,4 +1,4 @@
-import { Embed } from "@/helpers/responses/mod.ts";
+import { Embed } from "./responses/mod.ts";
 
 type HerorMessageOption = {
   thumbnail: string;

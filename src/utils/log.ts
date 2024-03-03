@@ -1,4 +1,4 @@
-import { CONSTANT } from "@/config/constant.ts";
+import { CONSTANT } from "../config/constant.ts";
 export const enum LogType {
   Info,
   Error,

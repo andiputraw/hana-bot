@@ -76,6 +76,10 @@ export function parseHeroAbilities(infos: Element[]): Array<[string, string]> {
           bodyBuilder += "\n";
           break;
         }
+        default: {
+          bodyBuilder += `${(node as Text).textContent.replaceAll("\n", "")} `;
+          break;
+        }
       }
     }
     fields.push([headerBuilder, bodyBuilder]);

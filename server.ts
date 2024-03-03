@@ -4,7 +4,7 @@ import nacl from "nacl";
 import { load } from "std/dotenv/mod.ts";
 await load({ export: true, allowEmptyValues: true });
 import { command } from "@/src/mod.ts";
-import "@/queue/listener.ts";
+import "./src/queue/listener.ts";
 
 enum InteractionType {
   Ping = 1,
@@ -53,8 +53,10 @@ async function home(request: Request) {
   // Type 2 in a request is an ApplicationCommand interaction.
   // It implies that a user has issued a command.
   if (type === InteractionType.ApplicationCommand) {
-    const commandName = data.name as string;
-
+    let commandName = data.name as string;
+    if (Deno.env.get("ENV") !== "PRODUCTION") {
+      commandName = commandName.replaceAll("dev_", "");
+    }
     const comm = command[commandName];
     if (!comm) {
       return json({

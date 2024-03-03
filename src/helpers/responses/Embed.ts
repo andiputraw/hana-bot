@@ -1,4 +1,4 @@
-import { CommandResponse } from "@/types.ts";
+import { CommandResponse } from "../../types.ts";
 
 //adapted on https://github.com/discordeno/serverless-deno-deploy-template/blob/main/src/utils/Embed.ts
 const embedLimits = {

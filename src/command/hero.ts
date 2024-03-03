@@ -1,11 +1,11 @@
-import { getDocument } from "../../utils/document.ts";
-import { parseHeroAbilities, parseHeroStats } from "../../utils/parser.ts";
-import { cache } from "../../database/mod.ts";
-import { cacheDocument } from "../../queue/mod.ts";
-import { Command, CommandResponse, CommonPayload } from "../../types.ts";
-import { HeroCache } from "../../queue/mod.ts";
-import { Message } from "@/helpers/responses/mod.ts";
-import { heroMessage } from "@/helpers/mod.ts";
+import { getDocument } from "../utils/document.ts";
+import { parseHeroAbilities, parseHeroStats } from "../utils/parser.ts";
+import { cache } from "../database/mod.ts";
+import { cacheDocument } from "../queue/mod.ts";
+import { Command, CommandResponse, CommonPayload } from "../types.ts";
+import { HeroCache } from "../queue/mod.ts";
+import { Message } from "../helpers/responses/mod.ts";
+import { heroMessage } from "../helpers/mod.ts";
 import { getAlias } from "@/alias.ts";
 
 interface HeroRequest {

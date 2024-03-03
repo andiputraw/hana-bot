@@ -1,4 +1,4 @@
-import { CommandResponse } from "@/types.ts";
+import { CommandResponse } from "../../types.ts";
 
 export class Message {
   #content = "";

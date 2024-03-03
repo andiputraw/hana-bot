@@ -1,5 +1,5 @@
 import { DOMParser } from "parser";
-import { log, LogType } from "@/utils/mod.ts";
+import { log, LogType } from "./mod.ts";
 
 export function getDocument(html: string) {
   const doc = new DOMParser().parseFromString(html, "text/html");

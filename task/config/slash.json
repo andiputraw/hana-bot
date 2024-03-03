@@ -1,0 +1,33 @@
+[
+  {
+    "name": "hero",
+    "description": "Show information about a hero",
+    "options": [
+      {
+        "name": "name",
+        "description": "The name of the hero",
+        "type": 3,
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "help",
+    "description": "Show Help",
+    "options": [
+      {
+        "name": "command",
+        "description": "The name of the command",
+        "type": 3
+      }
+    ]
+  },
+  {
+    "name": "alias",
+    "description": "Show alias that can be used for [name] parameter in command"
+  },
+  {
+    "name": "about",
+    "description": "About this bot"
+  }
+]
