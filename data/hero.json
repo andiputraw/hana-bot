@@ -1,0 +1,486 @@
+[
+  {
+    "name": "1st Corps Commander",
+    "img": "/files/site_images/1/680.png"
+  },
+  {
+    "name": "AA72",
+    "img": "/files/site_images/1/546.png"
+  },
+  {
+    "name": "Alef",
+    "img": "/themes/default/images/art/portraits/Alef.png"
+  },
+  {
+    "name": "Ameris",
+    "img": "/files/site_images/1/703.png"
+  },
+  {
+    "name": "Andras",
+    "img": "/files/site_images/1/598.png"
+  },
+  {
+    "name": "Angie",
+    "img": "/files/site_images/1/735.png"
+  },
+  {
+    "name": "Ara",
+    "img": "/files/site_images/1/471.png"
+  },
+  {
+    "name": "Arabelle",
+    "img": "/themes/default/images/art/portraits/Arabelle.png"
+  },
+  {
+    "name": "Bari",
+    "img": "/themes/default/images/art/portraits/Bari.png"
+  },
+  {
+    "name": "Beach Maid Amy",
+    "img": "/files/site_images/1/709.png"
+  },
+  {
+    "name": "Beach Shapira",
+    "img": "/files/site_images/1/713.png"
+  },
+  {
+    "name": "Beth",
+    "img": "/themes/default/images/art/portraits/Beth.png"
+  },
+  {
+    "name": "Bianca",
+    "img": "/themes/default/images/art/portraits/Bianca.png"
+  },
+  {
+    "name": "Carol",
+    "img": "/files/site_images/1/424.png"
+  },
+  {
+    "name": "Chun Ryeo",
+    "img": "/files/site_images/1/696.png"
+  },
+  {
+    "name": "Clara",
+    "img": "/files/site_images/1/428.png"
+  },
+  {
+    "name": "Claude",
+    "img": "/files/site_images/1/462.png"
+  },
+  {
+    "name": "Coco - Ascended",
+    "img": "/files/site_images/1/729.png"
+  },
+  {
+    "name": "Crosselle",
+    "img": "/files/site_images/1/591.png"
+  },
+  {
+    "name": "Dai",
+    "img": "/files/site_images/1/664.png"
+  },
+  {
+    "name": "Eleanor",
+    "img": "/files/site_images/1/307.png"
+  },
+  {
+    "name": "Erina",
+    "img": "/files/site_images/1/330.png"
+  },
+  {
+    "name": "Eugene",
+    "img": "/themes/default/images/art/portraits/Eugene.png"
+  },
+  {
+    "name": "Eunha",
+    "img": "/files/site_images/1/711.png"
+  },
+  {
+    "name": "Future Knight - Rifle",
+    "img": "/files/site_images/1/489.png"
+  },
+  {
+    "name": "Future Knight - Sword",
+    "img": "/files/site_images/1/490.png"
+  },
+  {
+    "name": "Future Princess",
+    "img": "/themes/default/images/art/portraits/Future_Princess.png"
+  },
+  {
+    "name": "Gabriel",
+    "img": "/files/site_images/1/313.png"
+  },
+  {
+    "name": "Garam",
+    "img": "/themes/default/images/art/portraits/Garam.png"
+  },
+  {
+    "name": "Gourry",
+    "img": "/files/site_images/1/441.png"
+  },
+  {
+    "name": "Hana",
+    "img": "/files/site_images/1/408.png"
+  },
+  {
+    "name": "Idol Captain Eva",
+    "img": "/themes/default/images/art/portraits/Idol_Captain_Eva.png"
+  },
+  {
+    "name": "KAI",
+    "img": "/files/site_images/1/691.png"
+  },
+  {
+    "name": "Kamael",
+    "img": "/files/site_images/1/369.png"
+  },
+  {
+    "name": "Kanna",
+    "img": "/files/site_images/1/394.png"
+  },
+  {
+    "name": "Lahn - Basket",
+    "img": "/files/site_images/1/700.png"
+  },
+  {
+    "name": "Lahn - Gauntlet",
+    "img": "/files/site_images/1/698.png"
+  },
+  {
+    "name": "Lapice - OH",
+    "img": "/files/site_images/1/585.png"
+  },
+  {
+    "name": "Lapice - TH",
+    "img": "/files/site_images/1/586.png"
+  },
+  {
+    "name": "Lifeguard Yuze",
+    "img": "/files/site_images/1/302.png"
+  },
+  {
+    "name": "Lilith",
+    "img": "/files/site_images/1/287.png"
+  },
+  {
+    "name": "Lina",
+    "img": "/files/site_images/1/442.png"
+  },
+  {
+    "name": "Lucy",
+    "img": "/files/site_images/1/290.png"
+  },
+  {
+    "name": "Lupina",
+    "img": "/themes/default/images/art/portraits/Lupina.png"
+  },
+  {
+    "name": "Lynn",
+    "img": "/files/site_images/1/314.png"
+  },
+  {
+    "name": "Maam",
+    "img": "/files/site_images/1/663.png"
+  },
+  {
+    "name": "Mad Panda",
+    "img": "/files/site_images/1/564.png"
+  },
+  {
+    "name": "Marina",
+    "img": "/themes/default/images/art/portraits/Marina.png"
+  },
+  {
+    "name": "Mayreel",
+    "img": "/files/site_images/1/315.png"
+  },
+  {
+    "name": "Mikke",
+    "img": "/files/site_images/1/728.png"
+  },
+  {
+    "name": "Miss Chrom",
+    "img": "/files/site_images/1/573.png"
+  },
+  {
+    "name": "Miya",
+    "img": "/themes/default/images/art/portraits/Miya.png"
+  },
+  {
+    "name": "Mk. 2",
+    "img": "/files/site_images/1/370.png"
+  },
+  {
+    "name": "Mk. 99",
+    "img": "/files/site_images/1/316.png"
+  },
+  {
+    "name": "Morrian",
+    "img": "/files/site_images/1/720.png"
+  },
+  {
+    "name": "Nari",
+    "img": "/themes/default/images/art/portraits/Nari.png"
+  },
+  {
+    "name": "Noxia",
+    "img": "/files/site_images/1/210.png"
+  },
+  {
+    "name": "Odile",
+    "img": "/files/site_images/1/725.png"
+  },
+  {
+    "name": "Oghma - Rifle",
+    "img": "/files/site_images/1/559.png"
+  },
+  {
+    "name": "Oghma - Sword",
+    "img": "/files/site_images/1/560.png"
+  },
+  {
+    "name": "Orca",
+    "img": "/files/site_images/1/382.png"
+  },
+  {
+    "name": "Parvati",
+    "img": "/files/site_images/1/431.png"
+  },
+  {
+    "name": "Plague Doctor",
+    "img": "/files/site_images/1/737.png"
+  },
+  {
+    "name": "Plitvice - OH",
+    "img": "/files/site_images/1/684.png"
+  },
+  {
+    "name": "Plitvice - TH",
+    "img": "/files/site_images/1/685.png"
+  },
+  {
+    "name": "Priscilla",
+    "img": "/files/site_images/1/458.png"
+  },
+  {
+    "name": "Pymon",
+    "img": "/files/site_images/1/610.png"
+  },
+  {
+    "name": "Rey",
+    "img": "/files/site_images/1/506.png"
+  },
+  {
+    "name": "Rosetta",
+    "img": "/files/site_images/1/675.png"
+  },
+  {
+    "name": "Rue - Rifle",
+    "img": "/files/site_images/1/695.png"
+  },
+  {
+    "name": "Rue - TH Sword",
+    "img": "/files/site_images/1/694.png"
+  },
+  {
+    "name": "Scintilla",
+    "img": "/files/site_images/1/323.png"
+  },
+  {
+    "name": "Seaside Sohee",
+    "img": "/files/site_images/1/295.png"
+  },
+  {
+    "name": "Sia",
+    "img": "/files/site_images/1/705.png"
+  },
+  {
+    "name": "Sumire",
+    "img": "/files/site_images/1/603.png"
+  },
+  {
+    "name": "Summer Lorraine",
+    "img": "/files/site_images/1/550.png"
+  },
+  {
+    "name": "Tinia",
+    "img": "/themes/default/images/art/portraits/Tinia.png"
+  },
+  {
+    "name": "Valencia",
+    "img": "/files/site_images/1/579.png"
+  },
+  {
+    "name": "Veronica",
+    "img": "/files/site_images/1/317.png"
+  },
+  {
+    "name": "Vinette",
+    "img": "/files/site_images/1/722.png"
+  },
+  {
+    "name": "Vishuvac - Claw",
+    "img": "/files/site_images/1/491.png"
+  },
+  {
+    "name": "Vishuvac - Gauntlet",
+    "img": "/files/site_images/1/492.png"
+  },
+  {
+    "name": "White Snow",
+    "img": "/files/site_images/1/677.png"
+  },
+  {
+    "name": "Win Ling",
+    "img": "/files/site_images/1/724.png"
+  },
+  {
+    "name": "Wizard Popp",
+    "img": "/files/site_images/1/669.png"
+  },
+  {
+    "name": "Xellos",
+    "img": "/files/site_images/1/448.png"
+  },
+  {
+    "name": "Yuna",
+    "img": "/files/site_images/1/739.png"
+  },
+  {
+    "name": "Aisha",
+    "img": "/themes/default/images/art/portraits/Aisha.png"
+  },
+  {
+    "name": "Akayuki",
+    "img": "/themes/default/images/art/portraits/Akayuki.png"
+  },
+  {
+    "name": "Amy",
+    "img": "/themes/default/images/art/portraits/Amy.png"
+  },
+  {
+    "name": "Aoba",
+    "img": "/themes/default/images/art/portraits/Aoba.png"
+  },
+  {
+    "name": "Catherine",
+    "img": "/themes/default/images/art/portraits/Catherine.png"
+  },
+  {
+    "name": "Coco",
+    "img": "/themes/default/images/art/portraits/Coco.png"
+  },
+  {
+    "name": "Craig",
+    "img": "/themes/default/images/art/portraits/Craig.png"
+  },
+  {
+    "name": "Craig - Ascended",
+    "img": "/files/site_images/1/688.png"
+  },
+  {
+    "name": "Dolf",
+    "img": "/themes/default/images/art/portraits/Dolf.png"
+  },
+  {
+    "name": "Elvira",
+    "img": "/themes/default/images/art/portraits/Elvira.png"
+  },
+  {
+    "name": "Elvira - Ascended",
+    "img": "/files/site_images/1/689.png"
+  },
+  {
+    "name": "Eva",
+    "img": "/themes/default/images/art/portraits/Eva.png"
+  },
+  {
+    "name": "Favi",
+    "img": "/themes/default/images/art/portraits/Favi.png"
+  },
+  {
+    "name": "Fei",
+    "img": "/themes/default/images/art/portraits/Fei.png"
+  },
+  {
+    "name": "Fei - Ascended",
+    "img": "/files/site_images/1/687.png"
+  },
+  {
+    "name": "Girgas",
+    "img": "/themes/default/images/art/portraits/Girgas.png"
+  },
+  {
+    "name": "Gremory",
+    "img": "/themes/default/images/art/portraits/Gremory.png"
+  },
+  {
+    "name": "Hekate",
+    "img": "/themes/default/images/art/portraits/Hekate.png"
+  },
+  {
+    "name": "Karina",
+    "img": "/themes/default/images/art/portraits/Karina.png"
+  },
+  {
+    "name": "Karina - Ascended",
+    "img": "/files/site_images/1/686.png"
+  },
+  {
+    "name": "Knight - Bow",
+    "img": "/files/site_images/1/493.png"
+  },
+  {
+    "name": "Knight - Sword",
+    "img": "/files/site_images/1/494.png"
+  },
+  {
+    "name": "Lavi",
+    "img": "/themes/default/images/art/portraits/Lavi.png"
+  },
+  {
+    "name": "Loraine",
+    "img": "/themes/default/images/art/portraits/Loraine.png"
+  },
+  {
+    "name": "Marianne",
+    "img": "/themes/default/images/art/portraits/Marianne.png"
+  },
+  {
+    "name": "Marvin",
+    "img": "/themes/default/images/art/portraits/Marvin.png"
+  },
+  {
+    "name": "Neva",
+    "img": "/themes/default/images/art/portraits/Neva.png"
+  },
+  {
+    "name": "Rachel",
+    "img": "/themes/default/images/art/portraits/Rachel.png"
+  },
+  {
+    "name": "Ranpang",
+    "img": "/themes/default/images/art/portraits/Ranpang.png"
+  },
+  {
+    "name": "Rie",
+    "img": "/themes/default/images/art/portraits/Rie.png"
+  },
+  {
+    "name": "Shapira",
+    "img": "/themes/default/images/art/portraits/Shapira.png"
+  },
+  {
+    "name": "Sohee",
+    "img": "/themes/default/images/art/portraits/Sohee.png"
+  },
+  {
+    "name": "White Beast",
+    "img": "/themes/default/images/art/portraits/White_Beast.png"
+  },
+  {
+    "name": "Yuze",
+    "img": "/themes/default/images/art/portraits/Yuze.png"
+  }
+]

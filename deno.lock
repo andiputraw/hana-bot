@@ -263,6 +263,7 @@
     "https://deno.land/x/js_yaml_port/js-yaml.js": "https://deno.land/x/js_yaml_port@3.14.0/js-yaml.js"
   },
   "remote": {
+    "https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.mjs": "785ebd37c9d10c4851f9981898762fdb7bd80d5a701739ed1c5247841b8162a3",
     "https://cdn.skypack.dev/-/http-cache-semantics@v4.1.1-N0bWdwKGKLbWpVco6TJA/dist=es2019,mode=imports/optimized/http-cache-semantics.js": "d2b8a8ddda629c7a915c269ecad2ba761cacad5c6e21bbf34381def053702294",
     "https://cdn.skypack.dev/-/tweetnacl@v1.0.3-G4yM3nQ8lnXXlGGQADqJ/dist=es2019,mode=imports/optimized/tweetnacl.js": "d26554516df57e5cb58954e90c633c8871b4e66016b9fe4e07a36db5430bc8c7",
     "https://cdn.skypack.dev/http-cache-semantics?dts": "351196d5e6d6b0cd41d8cfcc73f9a741532c8ac5ff1686a2c86d554a2a3dc993",

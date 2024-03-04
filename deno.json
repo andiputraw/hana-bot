@@ -1,7 +1,8 @@
 {
   "tasks": {
     "start": "deno run -A --unstable-kv server.ts",
-    "slash": "deno run --allow-net --allow-env --allow-read task/slash.ts"
+    "slash": "deno run --allow-net --allow-env --allow-read task/slash.ts",
+    "hero": "deno run --allow-net --allow-env --allow-read --unstable-kv task/addHero.ts"
   },
   "imports": {
     "parser": "https://deno.land/x/deno_dom@v0.1.45/deno-dom-wasm.ts",

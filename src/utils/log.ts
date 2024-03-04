@@ -1,11 +1,11 @@
-import { CONSTANT } from "../config/constant.ts";
 export const enum LogType {
   Info,
   Error,
 }
 // deno-lint-ignore no-explicit-any
 export function log(logType: LogType, ...args: any[]) {
-  if (CONSTANT.DEBUG) {
+  const isDebug = (Deno.env.get("DEBUG") || "true") === "true";
+  if (isDebug) {
     let type;
     switch (logType) {
       case LogType.Info:

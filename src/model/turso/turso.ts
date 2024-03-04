@@ -108,12 +108,11 @@ class Turso implements HeroDB {
     return true;
   }
 
-  async getHeroList(): Promise<[string[], boolean]> {
-    const heroes = await this.#db.select({ name: schema.heroes.name }).from(
+  async getHeroList(): Promise<[typeof schema.heroes.$inferSelect[], boolean]> {
+    const heroes = await this.#db.select().from(
       schema.heroes,
     );
-    const names = heroes.map((v) => v.name);
-    return [names, true];
+    return [heroes, true];
   }
 
   async #setSomething<V, T>(

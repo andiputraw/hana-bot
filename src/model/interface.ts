@@ -1,4 +1,5 @@
 import { HeroAbilities, HeroMetadata, HeroStats } from "./types.ts";
+import { heroes } from "./turso/schema/schema.ts";
 export interface Database {
   // deno-lint-ignore no-explicit-any
   get<T = any>(key: string[]): Promise<[T, boolean]>;
@@ -46,9 +47,9 @@ export interface HeroDB {
   /**
    * Retrieves a list of hero names.
    *
-   * @return {Promise<[string[], boolean]>} A promise that resolves to a tuple of hero names and a boolean value. if the list is empty, the boolean value is false
+   * @return {Promise<[typeof heroes.$inferSelect[], boolean]>} A promise that resolves to a tuple of hero names and a boolean value. if the list is empty, the boolean value is false
    */
-  getHeroList(): Promise<[string[], boolean]>;
+  getHeroList(): Promise<[typeof heroes.$inferSelect[], boolean]>;
   /**
    * Set the stats of the hero with the specified name.
    *
@@ -74,4 +75,5 @@ export interface HeroDB {
    * @return {Promise<boolean>} a Promise that resolves to true if the metadata are successfully set
    */
   setHeroMetadatas(name: string, metadatas: HeroMetadata): Promise<boolean>;
+  addHero(name: string, img: string): Promise<boolean>;
 }

@@ -1,4 +1,5 @@
 import { HeroDB } from "./interface.ts";
+import { heroes } from "@/src/model/turso/schema/schema.ts";
 import { HeroAbilities, HeroMetadata, HeroStats } from "./types.ts";
 
 class Hero {
@@ -96,8 +97,11 @@ class Hero {
    *
    * @return {Promise<[string[], boolean]>} a promise that resolves to a tuple containing a list of hero names and a boolean indicating whether the operation was successful
    */
-  async getHeroList(): Promise<[string[], boolean]> {
+  async getHeroList(): Promise<[typeof heroes.$inferSelect[], boolean]> {
     return await this.#db.getHeroList();
+  }
+  async addHero(name: string, img: string) {
+    return await this.#db.addHero(name, img);
   }
 }
 

@@ -5,7 +5,7 @@ import { HeroCache } from "../queue/mod.ts";
 import { Message } from "../helpers/responses/mod.ts";
 import { heroMessage } from "../helpers/mod.ts";
 import { getAlias } from "@/alias.ts";
-
+import { search } from "@/src/utils/mod.ts";
 interface HeroRequest {
   id: string;
   name: string;
@@ -23,12 +23,18 @@ export const hero: Command = {
     const heroModel = Model.getHero();
     const nameWithSpace = getAlias(request.options[0].value) ||
       request.options[0].value;
-    const name = nameWithSpace.replaceAll(" ", "+");
-    const [hero, ok] = await heroModel.getHero(name);
+    const [lists, ok1] = await heroModel.getHeroList();
+    if (!ok1) {
+      return new Message().setContent(
+        "Sorry i have not prepared for today's task. can you ask me later?",
+      ).build();
+    }
+    const result = search(lists, nameWithSpace)[0];
+    const name = result.item.name.replaceAll(" ", "+");
     const urlLink =
       `https://guardiantalesguides.com/game/guardians/show/${name}`;
-
-    if (!ok) {
+    const [hero, ok2] = await heroModel.getHero(result.item.name);
+    if (!ok2) {
       //If cache miss
       await cacheDocument({
         channelId: payload.channel.id,
