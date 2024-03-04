@@ -12,6 +12,7 @@
     "drizzle": "npm:drizzle-orm@0.29.4",
     "drizzle/": "npm:/drizzle-orm@0.29.4/",
     "libsql": "npm:@libsql/client/web",
+    "hono": "https://deno.land/x/hono@v4.0.9/mod.ts",
     "@/": "./"
   }
 }

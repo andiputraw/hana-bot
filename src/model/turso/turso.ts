@@ -27,27 +27,35 @@ class Turso implements HeroDB {
     const heroes = await this.#db
       .select()
       .from(schema.heroes)
+      .innerJoin(schema.heroData, eq(schema.heroes.id, schema.heroData.hero_id))
       .where(eq(schema.heroes.name, name));
     if (!heroes[0]) {
       // deno-lint-ignore no-explicit-any
       return [undefined as any, false];
     }
     const hero = heroes[0];
-    const data = await this.#db.select().from(schema.heroData).where(
-      eq(schema.heroData.hero_id, hero.id),
+
+    const [stats] = heroes.filter((v) =>
+      v.hero_datas.type === schema.HeroDataType.Stats
     );
-    if (data.length === 0) {
-      return [undefined as any, false];
-    }
-    const [stats] = data
-      .filter((v) => v.type === schema.HeroDataType.Stats)
-      .map((v) => v.value as HeroStats);
-    const [abilities] = data
-      .filter((v) => v.type === schema.HeroDataType.Abilities)
-      .map((v) => v.value as HeroAbilities);
-    const [metadatas] = data
-      .filter((v) => v.type === schema.HeroDataType.Metadata)
-      .map((v) => v.value as HeroMetadata);
+
+    const [abilities] = heroes.filter((v) =>
+      v.hero_datas.type === schema.HeroDataType.Abilities
+    );
+
+    const [metadatas] = heroes.filter((v) =>
+      v.hero_datas.type === schema.HeroDataType.Metadata
+    );
+
+    // const [stats] =
+    //   .filter((v) => v.type === schema.HeroDataType.Stats)
+    //   .map((v) => v.value as HeroStats);
+    // const [abilities] = data
+    //   .filter((v) => v.type === schema.HeroDataType.Abilities)
+    //   .map((v) => v.value as HeroAbilities);
+    // const [metadatas] = data
+    //   .filter((v) => v.type === schema.HeroDataType.Metadata)
+    //   .map((v) => v.value as HeroMetadata);
 
     // const [stats] = await this.#db.select().from(schema.heroStats).where(eq(
     //   schema.heroStats.hero_id,
@@ -63,10 +71,10 @@ class Turso implements HeroDB {
     //   );
     return [
       {
-        stats: stats,
-        abilities: abilities,
-        metadatas: metadatas,
-        img: hero.img,
+        stats: stats.hero_datas.value as HeroStats,
+        abilities: abilities.hero_datas.value as HeroAbilities,
+        metadatas: metadatas.hero_datas.value as HeroMetadata,
+        img: hero.heroes.img,
       },
       true,
     ];
@@ -79,15 +87,15 @@ class Turso implements HeroDB {
     abilities: HeroAbilities,
     metadatas: HeroMetadata,
   ): Promise<boolean> {
-    let [hero] = await this.#db.select().from(schema.heroes).where(eq(
+    const [hero] = await this.#db.select().from(schema.heroes).where(eq(
       schema.heroes.name,
       name,
     ));
-    if (hero) {
-      return false;
-    }
-    hero = (await this.#db.insert(schema.heroes).values({ name, img })
-      .returning())[0];
+    // if (hero) {
+    //   return false;
+    // }
+    // hero = (await this.#db.insert(schema.heroes).values({ name, img })
+    //   .returning())[0];
     const heroId = hero.id;
 
     await this.#db.insert(schema.heroData).values({

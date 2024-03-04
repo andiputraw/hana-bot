@@ -6,6 +6,7 @@ import nacl from "nacl";
 import { command } from "@/src/mod.ts";
 import "@/src/queue/listener.ts";
 import { Model } from "@/src/model/mod.ts";
+import { Hono } from "hono";
 
 await Model.init();
 enum InteractionType {
@@ -13,47 +14,45 @@ enum InteractionType {
   ApplicationCommand = 2,
 }
 
-serve({
-  "/": home,
-});
+type Env = {
+  Variables: {
+    req: any;
+  };
+};
 
-// The main logic of the Discord Slash Command is defined in this function.
-async function home(request: Request) {
-  // validateRequest() ensures that a request is of POST method and
-  // has the following headers.
-  const { error } = await validateRequest(request, {
+const app = new Hono<Env>();
+
+// bot validation middleware
+app.use("/bot", async (c, next) => {
+  const { error } = await validateRequest(c.req.raw, {
     POST: {
       headers: ["X-Signature-Ed25519", "X-Signature-Timestamp"],
     },
   });
+
   if (error) {
-    return json({ error: error.message }, { status: error.status });
+    return c.json({ error: error.message }, { status: error.status });
   }
 
-  // verifySignature() verifies if the request is coming from Discord.
-  // When the request's signature is not valid, we return a 401 and this is
-  // important as Discord sends invalid requests to test our verification.
-  const { valid, body } = await verifySignature(request);
+  const { valid, body } = await verifySignature(c.req.raw);
   if (!valid) {
-    return json(
-      { error: "Invalid request" },
-      {
-        status: 401,
-      },
-    );
-  }
-  const discordRequest = JSON.parse(body);
-  const { type = 0, data = { options: [] } } = JSON.parse(body);
-  // Discord performs Ping interactions to test our application.
-  // Type 1 in a request implies a Ping interaction.
-  if (type === InteractionType.Ping) {
-    return json({
-      type: 1, // Type 1 in a response is a Pong interaction response type.
-    });
+    return c.json({ error: "Invalid request" }, { status: 401 });
   }
 
-  // Type 2 in a request is an ApplicationCommand interaction.
-  // It implies that a user has issued a command.
+  const discordRequest = JSON.parse(body);
+  c.set("req", discordRequest);
+
+  await next();
+});
+
+app.post("/bot", async (c) => {
+  const body = c.get("req");
+
+  const { type = 0, data = { options: [] } } = body;
+  if (type == InteractionType.Ping) {
+    return c.json({ type: 1 });
+  }
+
   if (type === InteractionType.ApplicationCommand) {
     let commandName = data.name as string;
     if (Deno.env.get("ENV") !== "PRODUCTION") {
@@ -68,22 +67,19 @@ async function home(request: Request) {
         },
       });
     }
-    const response = await comm.execute(data, discordRequest);
-    return json(response);
+    const response = await comm.execute(data, body);
+    return c.json(response);
   } else {
-    return json({
-      // Type 4 responds with the below message retaining the user's
-      // input at the top.
+    return c.json({
       type: 4,
       data: {
         content: `Unknown Command Check log lmao`,
       },
     });
   }
+});
 
-  // We will return a bad request error as a valid Discord request
-  // shouldn't reach here.
-}
+Deno.serve({ port: 8000 }, app.fetch);
 
 /** Verify whether the request is coming from Discord. */
 async function verifySignature(

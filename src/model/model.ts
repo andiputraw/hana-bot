@@ -14,7 +14,11 @@ export class Model {
     const url = Deno.env.get("DB_URL") || "";
     const token = Deno.env.get("DB_AUTH_TOKEN") || "";
     const tursoClient = createClient({ url: url, authToken: token });
-    const client = drizzle(tursoClient);
+    const options = { logger: false };
+    if ((Deno.env.get("DEBUG") || "true") === "true") {
+      options.logger = true;
+    }
+    const client = drizzle(tursoClient, options);
     const turso = new Turso(client);
     this.cache = new Cache(new db(kv));
     this.hero = new Hero(turso);

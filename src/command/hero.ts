@@ -5,7 +5,8 @@ import { HeroCache } from "../queue/mod.ts";
 import { Message } from "../helpers/responses/mod.ts";
 import { heroMessage } from "../helpers/mod.ts";
 import { getAlias } from "@/alias.ts";
-import { search } from "@/src/utils/mod.ts";
+import { log, search } from "@/src/utils/mod.ts";
+import { LogType } from "@/src/utils/log.ts";
 interface HeroRequest {
   id: string;
   name: string;
@@ -30,17 +31,19 @@ export const hero: Command = {
       ).build();
     }
     const result = search(lists, nameWithSpace)[0];
+    log(LogType.Info, result);
     const name = result.item.name.replaceAll(" ", "+");
     const urlLink =
       `https://guardiantalesguides.com/game/guardians/show/${name}`;
     const [hero, ok2] = await heroModel.getHero(result.item.name);
+    log(LogType.Info, "Cache status for hero: ", ok2);
     if (!ok2) {
       //If cache miss
       await cacheDocument({
         channelId: payload.channel.id,
         cacheType: "hero",
         data: ({
-          heroName: name,
+          heroName: result.item.name,
         } satisfies HeroCache),
         link: urlLink,
       });
@@ -51,7 +54,7 @@ export const hero: Command = {
       {
         abilities: hero.abilities,
         stats: hero.stats,
-        name: nameWithSpace,
+        name: result.item.name,
         metadata: hero.metadatas,
       },
       hero.img,
