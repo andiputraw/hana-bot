@@ -57,6 +57,7 @@ export interface Command {
     request: any,
     payload: CommonPayload,
   ): Promise<CommandResponse> | CommandResponse;
+  autocomplete?(query: string): Promise<string[]> | string[];
 }
 
 export interface CommonPayload {

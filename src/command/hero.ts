@@ -62,4 +62,18 @@ export const hero: Command = {
     );
     return embed.build();
   },
+  autocomplete(query: string): Promise<string[]> {
+    return heroAutoComplete(query);
+  },
 };
+
+export async function heroAutoComplete(
+  currentString: string,
+): Promise<string[]> {
+  const heroModel = Model.getHero();
+  const [lists, ok] = await heroModel.getHeroList();
+  if (!ok) {
+    return [];
+  }
+  return search(lists, currentString).map((item) => item.item.name).slice(0, 5);
+}

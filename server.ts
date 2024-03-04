@@ -7,11 +7,14 @@ import { command } from "@/src/mod.ts";
 import "@/src/queue/listener.ts";
 import { Model } from "@/src/model/mod.ts";
 import { Hono } from "hono";
+import { log } from "@/src/utils/log.ts";
+import { LogType } from "@/src/utils/mod.ts";
 
 await Model.init();
 enum InteractionType {
   Ping = 1,
   ApplicationCommand = 2,
+  AutoComplete = 4,
 }
 
 type Env = {
@@ -47,6 +50,7 @@ app.use("/bot", async (c, next) => {
 
 app.post("/bot", async (c) => {
   const body = c.get("req");
+  // log(LogType.Info, body);
 
   const { type = 0, data = { options: [] } } = body;
   if (type == InteractionType.Ping) {
@@ -60,7 +64,7 @@ app.post("/bot", async (c) => {
     }
     const comm = command[commandName];
     if (!comm) {
-      return json({
+      return c.json({
         type: "4",
         data: {
           content: "sorry. i dont understand your intention",
@@ -69,7 +73,36 @@ app.post("/bot", async (c) => {
     }
     const response = await comm.execute(data, body);
     return c.json(response);
-  } else {
+  } else if (type === InteractionType.AutoComplete) {
+    log(LogType.Info, "Autocomplete");
+    let commandName = data.name as string;
+    const str = data.options[0].value as string;
+    if (Deno.env.get("ENV") !== "PRODUCTION") {
+      commandName = commandName.replaceAll("dev_", "");
+    }
+    const comm = command[commandName];
+    if (!comm || !comm.autocomplete) {
+      return c.json({
+        type: 8,
+        data: {
+          choices: [],
+        },
+      });
+    }
+    const choices = await comm.autocomplete(str);
+    console.log(choices);
+
+    return c.json({
+      type: 8,
+      data: {
+        choices: choices.map((choice) => ({
+          name: choice,
+          value: choice,
+        })),
+      },
+    });
+  }
+  {
     return c.json({
       type: 4,
       data: {
