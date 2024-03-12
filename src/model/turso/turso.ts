@@ -4,11 +4,16 @@ import { HeroAbilities, HeroMetadata, HeroStats } from "../types.ts";
 
 import * as schema from "./schema/schema.ts";
 import { and, eq } from "drizzle";
+import { Cache } from "cache-ttl";
+import { log, LogType } from "@/src/utils/mod.ts";
 
 class Turso implements HeroDB {
   #db: LibSQLDatabase;
-  constructor(db: LibSQLDatabase) {
+  #cache;
+  // deno-lint-ignore no-explicit-any
+  constructor(db: LibSQLDatabase, cache: Cache<string, any>) {
     this.#db = db;
+    this.#cache = cache;
   }
 
   async getHero(
@@ -117,9 +122,17 @@ class Turso implements HeroDB {
   }
 
   async getHeroList(): Promise<[typeof schema.heroes.$inferSelect[], boolean]> {
+    if (this.#cache.has("heroList")) {
+      log(LogType.Runtime, 'cache hit "heroList"');
+      return [this.#cache.get("heroList"), true];
+    }
+
     const heroes = await this.#db.select().from(
       schema.heroes,
     );
+
+    this.#cache.set("heroList", heroes, { ttl: 1000 * 60 * 60 });
+
     return [heroes, true];
   }
 

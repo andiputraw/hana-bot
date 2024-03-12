@@ -4,6 +4,7 @@ import Turso from "./turso/turso.ts";
 import { createClient } from "libsql";
 import { drizzle } from "drizzle/libsql";
 import Hero from "./hero.ts";
+import { Cache as CacheTtl } from "cache-ttl";
 
 export class Model {
   static cache: Cache;
@@ -19,7 +20,10 @@ export class Model {
       options.logger = true;
     }
     const client = drizzle(tursoClient, options);
-    const turso = new Turso(client);
+    // deno-lint-ignore no-explicit-any
+    const cacheTtl = new CacheTtl<string, any>(1000 * 60 * 60);
+
+    const turso = new Turso(client, cacheTtl);
     this.cache = new Cache(new db(kv));
     this.hero = new Hero(turso);
   }
