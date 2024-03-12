@@ -17,8 +17,9 @@ const enum NodeType {
     <div class="text">
         <h5>Dual Matrix</h5>
         When attacked, increase Def by 30% for 4 seconds.
-        When Justice Edge hits, increase Atk by 30% for 4 seconds.</div>
+        When Justice Edge hits, increase Atk by 30% for 4 seconds.
     </div>
+   </div>
  * ```
  * @returns
  */

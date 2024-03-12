@@ -1,7 +1,8 @@
 // Code adapted from https://github.com/discord/discord-example-app/blob/main/utils.js
-// deno-lint-ignore no-explicit-any
+
 export async function discordRequest(
   endpoint: string,
+  // deno-lint-ignore no-explicit-any
   options: any,
 ): Promise<Response> {
   // append endpoint to root API URL

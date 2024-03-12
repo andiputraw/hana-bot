@@ -24,6 +24,7 @@ switch (result) {
   case "1": {
     const response = await getActiveSlashCommand();
     console.log("List of all command: ");
+    // console.log(response);
     for (const command of response) {
       console.log(command.name);
     }
@@ -60,6 +61,11 @@ async function getActiveSlashCommand() {
   const response = await discordRequest(endPoint, {
     method: "GET",
   });
+  if (!response.ok) {
+    const error = await response.json();
+    console.log(error);
+    Deno.exit(1);
+  }
   const responseJson = await response.json();
   return responseJson;
 }
