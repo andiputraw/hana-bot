@@ -30,5 +30,10 @@
   {
     "name": "about",
     "description": "About this bot"
+  },
+  {
+    "name": "__refresh",
+    "type": 1,
+    "description": "-"
   }
 ]

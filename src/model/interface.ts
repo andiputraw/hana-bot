@@ -22,7 +22,7 @@ export interface HeroDB {
     img: string,
     stats: HeroStats,
     abilities: HeroAbilities,
-    metadatas: HeroMetadata,
+    metadatas: HeroMetadata
   ): Promise<boolean>;
 
   /**
@@ -31,9 +31,7 @@ export interface HeroDB {
    * @param {string} name - The name of the hero
    * @return {Promise<[ { stats: HeroStats; abilities: HeroAbilities; metadatas: HeroMetadata; img: string; }, boolean, ]>} A promise that resolves to tuple containing hero information and a boolean value. if the hero is not found, the first item is undefined and the second item is false
    */
-  getHero(
-    name: string,
-  ): Promise<
+  getHero(name: string): Promise<
     [
       {
         stats: HeroStats;
@@ -41,7 +39,7 @@ export interface HeroDB {
         metadatas: HeroMetadata;
         img: string;
       },
-      boolean,
+      boolean
     ]
   >;
   /**
@@ -49,7 +47,7 @@ export interface HeroDB {
    *
    * @return {Promise<[typeof heroes.$inferSelect[], boolean]>} A promise that resolves to a tuple of hero names and a boolean value. if the list is empty, the boolean value is false
    */
-  getHeroList(): Promise<[typeof heroes.$inferSelect[], boolean]>;
+  getHeroList(): Promise<[(typeof heroes.$inferSelect)[], boolean]>;
   /**
    * Set the stats of the hero with the specified name.
    *
@@ -76,4 +74,5 @@ export interface HeroDB {
    */
   setHeroMetadatas(name: string, metadatas: HeroMetadata): Promise<boolean>;
   addHero(name: string, img: string): Promise<boolean>;
+  getUnlistedHero(names: string[]): Promise<string[]>;
 }

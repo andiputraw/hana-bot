@@ -2,12 +2,10 @@ import { load } from "std/dotenv/mod.ts";
 import { Model } from "@/src/model/mod.ts";
 import { getDocument, getHtml } from "@/src/utils/mod.ts";
 
-import { hero } from "@/src/command/mod.ts";
-
 await load({ export: true });
 
 const cont = confirm(
-  "This action will add a new hero. Do you want to continue?",
+  "This action will add a new hero. Do you want to continue?"
 );
 if (!cont) {
   Deno.exit(0);

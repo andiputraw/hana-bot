@@ -28,7 +28,7 @@ class Hero {
    */
   async setHeroAbilities(
     name: string,
-    abilities: HeroAbilities,
+    abilities: HeroAbilities
   ): Promise<boolean> {
     return await this.#db.setHeroAbilities(name, abilities);
   }
@@ -42,7 +42,7 @@ class Hero {
    */
   async setHeroMetadatas(
     name: string,
-    metadatas: HeroMetadata,
+    metadatas: HeroMetadata
   ): Promise<boolean> {
     return await this.#db.setHeroMetadatas(name, metadatas);
   }
@@ -62,7 +62,7 @@ class Hero {
     img: string,
     stats: HeroStats,
     abilities: HeroAbilities,
-    metadatas: HeroMetadata,
+    metadatas: HeroMetadata
   ): Promise<boolean> {
     return await this.#db.setHero(name, img, stats, abilities, metadatas);
   }
@@ -86,7 +86,7 @@ class Hero {
         metadatas: HeroMetadata;
         img: string;
       },
-      boolean,
+      boolean
     ]
   > {
     return await this.#db.getHero(name);
@@ -97,11 +97,15 @@ class Hero {
    *
    * @return {Promise<[string[], boolean]>} a promise that resolves to a tuple containing a list of hero names and a boolean indicating whether the operation was successful
    */
-  async getHeroList(): Promise<[typeof heroes.$inferSelect[], boolean]> {
+  async getHeroList(): Promise<[(typeof heroes.$inferSelect)[], boolean]> {
     return await this.#db.getHeroList();
   }
   async addHero(name: string, img: string) {
     return await this.#db.addHero(name, img);
+  }
+
+  async getUnlistedHero(names: string[]): Promise<string[]> {
+    return await this.#db.getUnlistedHero(names);
   }
 }
 

@@ -1,5 +1,6 @@
 {
   "tasks": {
+    "start:reload": "deno run -A --reload --unstable-hmr server.ts",
     "start": "deno run -A --unstable-kv --unstable-hmr server.ts",
     "slash": "deno run --allow-net --allow-env --allow-read task/slash.ts",
     "hero": "deno run --allow-net --allow-env --allow-read --unstable-kv task/addHero.ts"

@@ -50,7 +50,7 @@ app.use("/bot", async (c, next) => {
 
 app.post("/bot", async (c) => {
   const body = c.get("req");
-  // log(LogType.Info, body);
+  log(LogType.Info, body);
 
   const { type = 0, data = { options: [] } } = body;
   if (type == InteractionType.Ping) {
@@ -116,7 +116,7 @@ Deno.serve({ port: 8000 }, app.fetch);
 
 /** Verify whether the request is coming from Discord. */
 async function verifySignature(
-  request: Request,
+  request: Request
 ): Promise<{ valid: boolean; body: string }> {
   const PUBLIC_KEY = Deno.env.get("DISCORD_PUBLIC_KEY")!;
   // Discord sends these headers with every request.
@@ -126,7 +126,7 @@ async function verifySignature(
   const valid = nacl.sign.detached.verify(
     new TextEncoder().encode(timestamp + body),
     hexToUint8Array(signature),
-    hexToUint8Array(PUBLIC_KEY),
+    hexToUint8Array(PUBLIC_KEY)
   );
 
   return { valid, body };
@@ -134,7 +134,5 @@ async function verifySignature(
 
 /** Converts a hexadecimal string to Uint8Array. */
 function hexToUint8Array(hex: string) {
-  return new Uint8Array(
-    hex.match(/.{1,2}/g)!.map((val) => parseInt(val, 16)),
-  );
+  return new Uint8Array(hex.match(/.{1,2}/g)!.map((val) => parseInt(val, 16)));
 }

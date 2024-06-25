@@ -1,5 +1,5 @@
 import { Model } from "../model/mod.ts";
-import { cacheDocument } from "../queue/mod.ts";
+import { MessageType, cacheDocument } from "../queue/mod.ts";
 import { Command, CommandResponse, CommonPayload } from "../types.ts";
 import { HeroCache } from "../queue/mod.ts";
 import { Message } from "../helpers/responses/mod.ts";
@@ -10,41 +10,41 @@ import { LogType } from "@/src/utils/log.ts";
 interface HeroRequest {
   id: string;
   name: string;
-  options: [
-    { name: string; type: number; value: string },
-  ];
+  options: [{ name: string; type: number; value: string }];
   type: number;
 }
 
 export const hero: Command = {
   async execute(
     request: HeroRequest,
-    payload: CommonPayload,
+    payload: CommonPayload
   ): Promise<CommandResponse> {
     const heroModel = Model.getHero();
-    const nameWithSpace = getAlias(request.options[0].value) ||
-      request.options[0].value;
+    const nameWithSpace =
+      getAlias(request.options[0].value) || request.options[0].value;
     const [lists, ok1] = await heroModel.getHeroList();
     if (!ok1) {
-      return new Message().setContent(
-        "Sorry i have not prepared for today's task. can you ask me later?",
-      ).build();
+      return new Message()
+        .setContent(
+          "Sorry i have not prepared for today's task. can you ask me later?"
+        )
+        .build();
     }
     const result = search(lists, nameWithSpace)[0];
     log(LogType.Info, result);
     const name = result.item.name.replaceAll(" ", "+");
-    const urlLink =
-      `https://guardiantalesguides.com/game/guardians/show/${name}`;
+    const urlLink = `https://guardiantalesguides.com/game/guardians/show/${name}`;
     const [hero, ok2] = await heroModel.getHero(result.item.name);
     log(LogType.Info, "Cache status for hero: ", ok2);
     if (!ok2) {
       //If cache miss
       await cacheDocument({
+        type: MessageType.GetDocument,
         channelId: payload.channel.id,
         cacheType: "hero",
-        data: ({
+        data: {
           heroName: result.item.name,
-        } satisfies HeroCache),
+        } satisfies HeroCache,
         link: urlLink,
       });
       return new Message().setContent("wait a second").build();
@@ -58,7 +58,7 @@ export const hero: Command = {
         metadata: hero.metadatas,
       },
       hero.img,
-      urlLink,
+      urlLink
     );
     return embed.build();
   },
@@ -68,12 +68,14 @@ export const hero: Command = {
 };
 
 export async function heroAutoComplete(
-  currentString: string,
+  currentString: string
 ): Promise<string[]> {
   const heroModel = Model.getHero();
   const [lists, ok] = await heroModel.getHeroList();
   if (!ok) {
     return [];
   }
-  return search(lists, currentString).map((item) => item.item.name).slice(0, 5);
+  return search(lists, currentString)
+    .map((item) => item.item.name)
+    .slice(0, 5);
 }

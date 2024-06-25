@@ -3,13 +3,13 @@
 export async function discordRequest(
   endpoint: string,
   // deno-lint-ignore no-explicit-any
-  options: any,
+  options: any
 ): Promise<Response> {
   // append endpoint to root API URL
   const url = "https://discord.com/api/v10/" + endpoint;
   // Stringify payloads
   if (options.body) options.body = JSON.stringify(options.body);
-  // Use node-fetch to make requests
+  // Use fetch to make requests
   const res = await fetch(url, {
     headers: {
       Authorization: `Bot ${Deno.env.get("DISCORD_BOT_TOKEN")}`,

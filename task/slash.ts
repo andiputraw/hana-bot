@@ -31,7 +31,7 @@ switch (result) {
     break;
   }
   case "2":
-    console.log("Delete a slash command.");
+    await createSingleClashCommand();
     break;
   case "3":
     await createAllSlashCommand();
@@ -69,6 +69,26 @@ async function getActiveSlashCommand() {
   const responseJson = await response.json();
   return responseJson;
 }
+async function createSingleClashCommand(){
+  console.log("Which one you want to create?");
+  for(const [i, command] of commands.entries()) {
+    console.log(`${i + 1}: ${command.name}` );
+  }
+  const choices = parseInt( doPrompt());
+  const command = commands[choices - 1];
+  console.log(JSON.stringify(command))
+  const endPoint = !isGlobal
+    ? `/applications/${Deno.env.get("DISCORD_APP_ID")}/guilds/${
+      Deno.env.get("GUILD_ID")
+    }/commands`
+    : `/applications/${Deno.env.get("DISCORD_APP_ID")}/commands`;
+  const response = await discordRequest(endPoint, {
+    method: "POST",
+    body: command,
+  });
+  console.log(await response.json())
+}
+
 
 async function deleteAllSlashCommand() {
   const activeSlashCommand = await getActiveSlashCommand();
