@@ -42,7 +42,11 @@ Install Deno [here](https://deno.com/).
 
 ### 2. Add slash command to discord
 
-TBA
+1. run command `deno task slash`
+2. if you are developing, you can say "no" in the prompt asking for "is global"
+3. add all slash command
+
+- Note that. if the environment variable for "ENV" Is not set into "PRODUCTION", every single command will be prefixed with "dev\_"
 
 ## Deploy
 
